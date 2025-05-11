@@ -1,0 +1,10 @@
+const express = require("express");
+const router = express.Router();
+const providersController = require("../controllers/providers.controller");
+
+router.get("/", providersController.getAllProviders);
+router.post("/", providersController.createProvider);
+router.put("/:id", providersController.updateProvider);
+router.delete("/:id", providersController.deleteProvider);
+
+module.exports = router;

@@ -4,5 +4,7 @@ const providersController = require("../controllers/providers.controller");
 
 router.get("/", providersController.getAllProviders);
 router.post("/", providersController.createProvider);
+router.put("/:id", providersController.updateProvider);
+router.delete("/:id", providersController.deleteProvider);
 
 module.exports = router;

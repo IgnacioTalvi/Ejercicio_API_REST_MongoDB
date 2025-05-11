@@ -1,37 +1,30 @@
-const express = require('express')
-const cowsay = require('cowsay')
-const app = express()
-const port = 3000
+const express = require("express")
+const mongoose = require("./config/db_mongo")
+const app = express();
+const port = 3000;
 
 // Middlewares
-const error404 = require('./middlewares/error404');
 const morgan = require('./middlewares/morgan');
 
 // Logger
 app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
-// Rutas
-const productsApiRoutes = require("./routes/productsApi.routes")
-const productsRoutes = require("./routes/products.routes")
-// const entriesApiRoutes = require("./routes/entriesApi.routes")
+//Rutas 
+// const productsRoutes = require('./routes/products.routes');
+const providersRoutes = require('./routes/providers.routes');
 
 app.use(express.json()); // Habilito recepción de JSON en servidor
 
-// Rutas
 //API
-app.use('/api/products',productsApiRoutes);
+// app.use('/api/products',productsRoutes);
+app.use('/api/providers',providersRoutes);
 
-//WEB
-app.use('/products',productsRoutes);
+//Ruta de prueba
+app.get("/", (req, res) => {
+    res.send(`Servidor funcionando en ${port}`)
+})
 
-// Para rutas no existentes
-app.use('*',error404);
-
+//Arrancamos el servidor
 app.listen(port, () => {
-  console.log(
-      cowsay.say({
-          text: `Nos vamos a por tortilla. Funcionando en: http://localhost:${port}`,
-          e: "oO",
-          T: "U "
-      }))
+    console.log(`Servidor arrancado en http://localhost:${port}`)
 })

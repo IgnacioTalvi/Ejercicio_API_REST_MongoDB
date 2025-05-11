@@ -12,6 +12,11 @@ const objectSchema = {
     required: true,
     maxlength: 100,
   },
+  address: {
+    type: String,
+    required: true,
+    maxlength: 200,
+  },
   url_web: {
     type: String,
     required: false,
@@ -21,14 +26,9 @@ const objectSchema = {
 };
 
 //Creamos el schema
-const offerSchema = mongoose.Schema(objectSchema, { versionKey: false });
+const providerSchema = mongoose.Schema(objectSchema, { versionKey: false });
 
 //Creamos el modelo --> Colección
-const Offer = mongoose.model("Provider", offerSchema);
+const Provider = mongoose.model("Provider", providerSchema);
 
-module.exports = Offer;
-
-// company_name
-// CIF
-// address
-// url_web
+module.exports = Provider;
